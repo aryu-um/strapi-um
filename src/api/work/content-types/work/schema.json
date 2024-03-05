@@ -4,7 +4,8 @@
   "info": {
     "singularName": "work",
     "pluralName": "works",
-    "displayName": "Works"
+    "displayName": "Works",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -22,17 +23,21 @@
       "maxLength": 200
     },
     "Image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "videos"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
+      ]
     },
     "Link": {
       "type": "string",
       "required": false
+    },
+    "Category": {
+      "type": "string",
+      "required": true
     }
   }
 }

@@ -828,6 +828,7 @@ export interface ApiWorkWork extends Schema.CollectionType {
     singularName: 'work';
     pluralName: 'works';
     displayName: 'Works';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -845,12 +846,43 @@ export interface ApiWorkWork extends Schema.CollectionType {
       }>;
     Image: Attribute.Media & Attribute.Required;
     Link: Attribute.String;
+    Category: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::work.work', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::work.work', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiWorkCategoryWorkCategory extends Schema.CollectionType {
+  collectionName: 'work_categories';
+  info: {
+    singularName: 'work-category';
+    pluralName: 'work-categories';
+    displayName: 'WorkCategories';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Category: Attribute.String & Attribute.Required & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::work-category.work-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::work-category.work-category',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -875,6 +907,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::service.service': ApiServiceService;
       'api::work.work': ApiWorkWork;
+      'api::work-category.work-category': ApiWorkCategoryWorkCategory;
     }
   }
 }
