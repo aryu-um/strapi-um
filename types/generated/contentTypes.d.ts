@@ -925,6 +925,45 @@ export interface ApiWorkCategoryWorkCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiWorksCompletedWorksCompleted extends Schema.CollectionType {
+  collectionName: 'works_completeds';
+  info: {
+    singularName: 'works-completed';
+    pluralName: 'works-completeds';
+    displayName: 'WorksCompleted';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String & Attribute.Required;
+    Description: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 400;
+      }>;
+    Link: Attribute.String;
+    Category: Attribute.String & Attribute.Required;
+    ImageLink: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::works-completed.works-completed',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::works-completed.works-completed',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -947,6 +986,7 @@ declare module '@strapi/types' {
       'api::service.service': ApiServiceService;
       'api::work.work': ApiWorkWork;
       'api::work-category.work-category': ApiWorkCategoryWorkCategory;
+      'api::works-completed.works-completed': ApiWorksCompletedWorksCompleted;
     }
   }
 }

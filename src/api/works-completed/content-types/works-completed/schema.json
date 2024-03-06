@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "works_completeds",
+  "info": {
+    "singularName": "works-completed",
+    "pluralName": "works-completeds",
+    "displayName": "WorksCompleted",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Description": {
+      "type": "text",
+      "required": true,
+      "maxLength": 400
+    },
+    "Link": {
+      "type": "string",
+      "required": false
+    },
+    "Category": {
+      "type": "string",
+      "required": true
+    },
+    "ImageLink": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
