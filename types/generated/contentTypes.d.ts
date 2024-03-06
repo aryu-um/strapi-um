@@ -783,44 +783,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiContactDetailContactDetail extends Schema.CollectionType {
-  collectionName: 'contact_details';
-  info: {
-    singularName: 'contact-detail';
-    pluralName: 'contact-details';
-    displayName: 'ContactDetails';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Message: Attribute.Text &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 400;
-      }>;
-    Phone: Attribute.String & Attribute.Required;
-    Email: Attribute.Email & Attribute.Required;
-    FirstName: Attribute.String & Attribute.Required;
-    LastName: Attribute.String & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::contact-detail.contact-detail',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::contact-detail.contact-detail',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiServiceService extends Schema.CollectionType {
   collectionName: 'services';
   info: {
@@ -856,41 +818,6 @@ export interface ApiServiceService extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiWorkWork extends Schema.CollectionType {
-  collectionName: 'works';
-  info: {
-    singularName: 'work';
-    pluralName: 'works';
-    displayName: 'Works';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 60;
-      }>;
-    Description: Attribute.Text &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 200;
-      }>;
-    Image: Attribute.Media & Attribute.Required;
-    Link: Attribute.String;
-    Category: Attribute.String & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::work.work', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::work.work', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -982,9 +909,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::contact-detail.contact-detail': ApiContactDetailContactDetail;
       'api::service.service': ApiServiceService;
-      'api::work.work': ApiWorkWork;
       'api::work-category.work-category': ApiWorkCategoryWorkCategory;
       'api::works-completed.works-completed': ApiWorksCompletedWorksCompleted;
     }
